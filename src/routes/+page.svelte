@@ -6,11 +6,10 @@
 	console.log(page.data);
 	console.log(page.data.session);
 
-	if (page.data.session) {
-		redirect(302, '/home');
-	}
+	// if (page.data.session) {
+	// 	redirect(302, '/home');
+	// }
 </script>
 
 <h1>Hackbuds</h1>
 <p>Find a programming buddy!</p>
-<SignIn>Sign In</SignIn>
