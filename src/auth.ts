@@ -9,7 +9,7 @@ export const { handle, signIn, signOut } = SvelteKitAuth(
 		providers: [
 			Slack
 		],
-		debug: true,
+		debug: false,
 		trustHost: true,
 	}
 )
