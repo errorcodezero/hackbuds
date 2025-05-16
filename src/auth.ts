@@ -3,7 +3,7 @@ import Slack from "@auth/sveltekit/providers/slack"
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "$lib/server/db"
 
-export const { handle, signIn, signOut } = SvelteKitAuth(
+const { handle, signIn, signOut } = SvelteKitAuth(
 	{
 		adapter: DrizzleAdapter(db),
 		providers: [
@@ -13,3 +13,5 @@ export const { handle, signIn, signOut } = SvelteKitAuth(
 		trustHost: true,
 	}
 )
+
+export { handle, signIn, signOut }
