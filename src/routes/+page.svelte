@@ -10,7 +10,7 @@
 	<h1>Hackbuds</h1>
 	<p>Find a programming buddy and build projects together!</p>
 	{#if !page.data.session}
-		<Button onclick={() => signIn('slack')}>Sign in with slack</Button>
+		<Button onclick={() => signIn('slack')}>Sign In With slack</Button>
 	{:else}
 		<Button href="/home">Open Dashboard</Button>
 	{/if}
