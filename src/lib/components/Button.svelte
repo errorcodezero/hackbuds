@@ -1,4 +1,5 @@
 <script lang="ts">
+	// more types coming soon probably
 	const { children, type = 'primary', onclick = null, href = '' } = $props();
 </script>
 

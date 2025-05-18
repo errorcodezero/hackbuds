@@ -4,7 +4,7 @@
 
 	let { children } = $props();
 
-	if (page.data.session) {
+	if (!page.data.session) {
 		redirect(302, '/');
 	}
 </script>

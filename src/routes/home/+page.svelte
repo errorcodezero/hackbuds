@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { signIn } from '@auth/sveltekit/client';
+	import IconButton from '$lib/components/IconButton.svelte';
+	import Icon from '@iconify/svelte';
 </script>
 
-<h1>testing this {page.data.session?.user?.id}</h1>
-<button onclick={() => signIn()}>Sign in with slack</button>
+<main>
+	<h1>John Doe</h1>
+	<p>C++ and rust fanatic. HATES javascript with a passion.</p>
+	<IconButton onclick={null} href="" type="heart" />
+	<IconButton onclick={null} href="" type="cross" />
+</main>
