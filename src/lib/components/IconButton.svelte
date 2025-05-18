@@ -98,7 +98,7 @@
 		background-color: var(--ctp-blue);
 	}
 
-	button.code {
+	button.code:hover {
 		color: var(--ctp-base);
 		background-color: var(--ctp-sapphire);
 	}

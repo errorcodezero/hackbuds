@@ -7,6 +7,9 @@
 	if (!page.data.session) {
 		redirect(302, '/');
 	}
+
+	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
+<Navbar />
 {@render children()}

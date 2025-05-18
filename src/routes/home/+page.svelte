@@ -14,9 +14,11 @@
 				width={350}
 			/>
 			<p>C++ and rust fanatic. HATES javascript with a passion.</p>
-			<IconButton href="" type="heart" onclick={null} />
-			<IconButton href="" type="cross" onclick={null} />
-			<IconButton href="https://github.com/errorcodezero/hackbuds" type="code" onclick={null} />
+			<div class="buttons">
+				<IconButton href="" type="heart" onclick={null} />
+				<IconButton href="" type="cross" onclick={null} />
+				<IconButton href="https://github.com/errorcodezero/hackbuds" type="code" onclick={null} />
+			</div>
 		</div>
 	</Card>
 </div>
@@ -36,5 +38,10 @@
 
 	img {
 		border-radius: 1.5em;
+	}
+
+	.buttons {
+		display: flex;
+		gap: 1em;
 	}
 </style>

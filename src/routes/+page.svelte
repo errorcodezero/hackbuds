@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Button from '$lib/components/Button.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import { signIn } from '@auth/sveltekit/client';
 </script>
 

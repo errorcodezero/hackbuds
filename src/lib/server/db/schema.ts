@@ -14,6 +14,7 @@ export const users = pgTable("user", {
 		.$defaultFn(() => crypto.randomUUID()),
 	name: text("name"),
 	rating: integer("integer").default(600),
+	description: text("description").default(""),
 	email: text("email").unique(),
 	emailVerified: timestamp("emailVerified", { mode: "date" }),
 	image: text("image"),
