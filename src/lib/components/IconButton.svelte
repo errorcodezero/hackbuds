@@ -4,11 +4,12 @@
 
 	const {
 		type = 'heart',
-		onclick = null
+		onclick = undefined,
+		href = null
 	}: {
-		type: 'heart' | 'cross';
+		type: 'heart' | 'cross' | 'code';
 		onclick: MouseEventHandler<HTMLButtonElement> | undefined | null;
-		href: string;
+		href: string | null;
 	} = $props();
 
 	let clicked = $state(false);
@@ -37,11 +38,23 @@
 		}}
 	>
 		{#if !clicked}
-			<Icon width={40} height={40} icon="mdi:close" />
+			<Icon width={40} height={40} icon="mdi:cancel" />
 		{:else}
-			<Icon width={40} height={40} icon="mdi:close" />
+			<Icon width={40} height={40} icon="mdi:radio-button-checked" />
 		{/if}
 	</button>
+{:else if type === 'code'}
+	<a {href}>
+		<button
+			class="code"
+			onclick={(event) => {
+				clicked = !clicked;
+				if (onclick) onclick(event);
+			}}
+		>
+			<Icon width={40} height={40} icon="mdi:code" />
+		</button>
+	</a>
 {/if}
 
 <style>
@@ -78,5 +91,15 @@
 	button.cross:hover {
 		color: var(--ctp-base);
 		background-color: var(--ctp-maroon);
+	}
+
+	button.code {
+		color: var(--ctp-surface0);
+		background-color: var(--ctp-blue);
+	}
+
+	button.code {
+		color: var(--ctp-base);
+		background-color: var(--ctp-sapphire);
 	}
 </style>
