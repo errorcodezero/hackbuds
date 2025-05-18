@@ -6,7 +6,7 @@
 <div id="container">
 	<nav>
 		<a href="/home" class="link"><Icon icon="mdi:home" width={40} height={40} /></a>
-		<a href="/home" class="link"><Icon icon="mdi:settings" width={40} height={40} /></a>
+		<a href="/home/settings" class="link"><Icon icon="mdi:settings" width={40} height={40} /></a>
 		<button
 			class="link"
 			onclick={async () => {

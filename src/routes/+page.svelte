@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Button from '$lib/components/Button.svelte';
-	import Navbar from '$lib/components/Navbar.svelte';
 	import { signIn } from '@auth/sveltekit/client';
 </script>
 
@@ -10,9 +9,9 @@
 	<h1>Hackbuds</h1>
 	<p>Find a programming buddy and build projects together!</p>
 	{#if !page.data.session}
-		<Button onclick={() => signIn('slack')}>Sign In With slack</Button>
+		<Button type="primary" onclick={() => signIn('slack')}>Sign In With slack</Button>
 	{:else}
-		<Button href="/home">Open Dashboard</Button>
+		<a href="/home"><Button onclick={null} type="primary">Open Dashboard</Button></a>
 	{/if}
 </main>
 

@@ -1,14 +1,21 @@
 <script lang="ts">
-	// more types coming soon probably
-	const { children, type = 'primary', onclick = null, href = '' } = $props();
+	import type { MouseEventHandler } from 'svelte/elements';
+
+	const {
+		children,
+		type = 'primary',
+		onclick = null
+	}: {
+		children: any;
+		type: 'primary' | 'danger';
+		onclick: MouseEventHandler<HTMLButtonElement> | null | undefined;
+	} = $props();
 </script>
 
-{#if href == ''}
-	{#if type == 'primary'}
-		<button {onclick} class="primary">{@render children()}</button>
-	{/if}
-{:else}
-	<a {href}><button {onclick} class="primary">{@render children()}</button></a>
+{#if type == 'primary'}
+	<button {onclick} class="primary">{@render children()}</button>
+{:else if type == 'danger'}
+	<button {onclick} class="danger">{@render children()}</button>
 {/if}
 
 <style>
@@ -22,6 +29,7 @@
 		border-radius: 2em;
 		transition-duration: 0.65s;
 		cursor: pointer;
+		font-size: 1em;
 	}
 
 	button:hover {
@@ -33,5 +41,12 @@
 	}
 	.primary:hover {
 		background-color: var(--ctp-sapphire);
+	}
+
+	.danger {
+		background-color: var(--ctp-red);
+	}
+	.danger:hover {
+		background-color: var(--ctp-maroon);
 	}
 </style>
