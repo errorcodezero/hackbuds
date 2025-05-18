@@ -24,18 +24,6 @@
 			<div class="buttons">
 				<IconButton tooltip="Like" href="" type="heart" onclick={null} />
 				<IconButton tooltip="Dislike" href="" type="cross" onclick={null} />
-				<IconButton
-					tooltip={`${page.data.session?.user?.name}'s Github`}
-					href="https://github.com/errorcodezero/hackbuds"
-					type="code"
-					onclick={null}
-				/>
-				<IconButton
-					tooltip={`${page.data.session?.user?.name}'s Hackatime`}
-					href="https://hackatime.hackclub.com"
-					type="schedule"
-					onclick={null}
-				/>
 			</div>
 			<div class="tags">
 				<Tag color="blue">C++</Tag>

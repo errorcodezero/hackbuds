@@ -5,10 +5,9 @@
 	const {
 		type = 'heart',
 		onclick = undefined,
-		href = null,
 		tooltip
 	}: {
-		type: 'heart' | 'cross' | 'code' | 'schedule';
+		type: 'heart' | 'cross';
 		onclick: MouseEventHandler<HTMLButtonElement> | undefined | null;
 		href: string | null;
 		tooltip: string | null | undefined;
@@ -47,19 +46,6 @@
 			<Icon width={40} height={40} icon="mdi:radio-button-checked" />
 		{/if}
 	</button>
-{:else if type === 'code'}
-	<a {href}>
-		<button
-			title={tooltip}
-			class="code"
-			onclick={(event) => {
-				clicked = !clicked;
-				if (onclick) onclick(event);
-			}}
-		>
-			<Icon width={40} height={40} icon="mdi:code" />
-		</button>
-	</a>
 {/if}
 
 <style>
@@ -96,15 +82,5 @@
 	button.cross:hover {
 		color: var(--ctp-base);
 		background-color: var(--ctp-maroon);
-	}
-
-	button.code {
-		color: var(--ctp-surface0);
-		background-color: var(--ctp-blue);
-	}
-
-	button.code:hover {
-		color: var(--ctp-base);
-		background-color: var(--ctp-sapphire);
 	}
 </style>
