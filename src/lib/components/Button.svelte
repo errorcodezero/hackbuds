@@ -7,13 +7,15 @@
 		onclick = null
 	}: {
 		children: any;
-		type: 'primary' | 'danger';
+		type: 'primary' | 'secondary' | 'danger';
 		onclick: MouseEventHandler<HTMLButtonElement> | null | undefined;
 	} = $props();
 </script>
 
 {#if type == 'primary'}
 	<button {onclick} class="primary">{@render children()}</button>
+{:else if type == 'secondary'}
+	<button {onclick} class="secondary">{@render children()}</button>
 {:else if type == 'danger'}
 	<button {onclick} class="danger">{@render children()}</button>
 {/if}
@@ -41,6 +43,13 @@
 	}
 	.primary:hover {
 		background-color: var(--ctp-sapphire);
+	}
+
+	.secondary {
+		background-color: var(--ctp-pink);
+	}
+	.secondary:hover {
+		background-color: var(--ctp-mauve);
 	}
 
 	.danger {

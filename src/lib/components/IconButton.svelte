@@ -5,11 +5,13 @@
 	const {
 		type = 'heart',
 		onclick = undefined,
-		href = null
+		href = null,
+		tooltip
 	}: {
-		type: 'heart' | 'cross' | 'code';
+		type: 'heart' | 'cross' | 'code' | 'schedule';
 		onclick: MouseEventHandler<HTMLButtonElement> | undefined | null;
 		href: string | null;
+		tooltip: string | null | undefined;
 	} = $props();
 
 	let clicked = $state(false);
@@ -17,6 +19,7 @@
 
 {#if type === 'heart'}
 	<button
+		title={tooltip}
 		class="heart"
 		onclick={(event) => {
 			clicked = !clicked;
@@ -31,6 +34,7 @@
 	</button>
 {:else if type === 'cross'}
 	<button
+		title={tooltip}
 		class="cross"
 		onclick={(event) => {
 			clicked = !clicked;
@@ -46,6 +50,7 @@
 {:else if type === 'code'}
 	<a {href}>
 		<button
+			title={tooltip}
 			class="code"
 			onclick={(event) => {
 				clicked = !clicked;
@@ -75,7 +80,7 @@
 
 	button.heart {
 		color: var(--ctp-surface0);
-		background-color: var(--ctp-lavender);
+		background-color: var(--ctp-pink);
 	}
 
 	button.heart:hover {

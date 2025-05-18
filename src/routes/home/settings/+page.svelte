@@ -4,7 +4,9 @@
 
 <div class="container">
 	<h1>Settings</h1>
-	<Button href="" type="danger" onclick={() => {}}>Delete account</Button>
+	<Button type="danger" onclick={() => alert("you'll never leave(for now at least)")}
+		>Delete account</Button
+	>
 </div>
 
 <style>
