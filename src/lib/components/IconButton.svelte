@@ -66,12 +66,12 @@
 
 	button.heart {
 		color: var(--ctp-surface0);
-		background-color: var(--ctp-pink);
+		background-color: var(--ctp-blue);
 	}
 
 	button.heart:hover {
 		color: var(--ctp-base);
-		background-color: var(--ctp-mauve);
+		background-color: var(--ctp-sapphire);
 	}
 
 	button.cross {

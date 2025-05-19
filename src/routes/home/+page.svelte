@@ -12,7 +12,7 @@
 			<h1>
 				{page.data.session?.user?.name}
 				<a id="github_link" href="https://github.com/errorcodezero"
-					><Icon icon="mdi:link" width={25} height={25} /></a
+					><Icon icon="mdi:github" width={20} height={20} /></a
 				>
 			</h1>
 			<img
@@ -30,6 +30,7 @@
 				<Tag color="orange">Rust</Tag>
 				<Tag color="yellow">Svelte</Tag>
 				<Tag color="red">Astro</Tag>
+				<Tag color="white">Test</Tag>
 			</div>
 		</div>
 	</Card>
