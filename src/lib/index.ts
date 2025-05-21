@@ -14,6 +14,9 @@ function calculateScore(userRating: number, otherPersonRating: number) {
 	return 1 / (1 + Math.pow(10, (otherPersonRating - userRating) / 400));
 }
 
+/*
+* Uses details of match as well as the ratings of the two players to return the new ratings afterwards.
+*/
 function newRating(userRating: number, otherPersonRating: number, userWon: boolean): Match {
 	const score = calculateScore(userRating, otherPersonRating);
 	let newUserRating = userRating;

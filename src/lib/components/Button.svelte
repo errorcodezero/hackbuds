@@ -27,6 +27,7 @@
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
 		background-color: var(--ctp-blue);
+		color: var(--ctp-base);
 		border: none;
 		border-radius: 2em;
 		transition-duration: 0.65s;

@@ -16,6 +16,7 @@ export const users = pgTable("user", {
 	rating: integer("integer").default(600),
 	tags: text('tags').array().default([]),
 	description: text("description").default(""),
+	agreedToTerms: boolean('agreedToTerms').default(false),
 	email: text("email").unique(),
 	emailVerified: timestamp("emailVerified", { mode: "date" }),
 	image: text("image"),

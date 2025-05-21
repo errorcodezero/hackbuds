@@ -43,7 +43,8 @@
 		"@auth/drizzle-adapter": "^1.9.1",
 		"@auth/sveltekit": "^1.9.2",
 		"drizzle-orm": "^0.40.1",
-		"postgres": "^3.4.5"
+		"postgres": "^3.4.5",
+		"zod": "^3.25.3"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

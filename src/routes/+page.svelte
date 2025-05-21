@@ -2,7 +2,6 @@
 	import { page } from '$app/state';
 	import Button from '$lib/components/Button.svelte';
 	import { signIn } from '@auth/sveltekit/client';
-	import { redirect } from '@sveltejs/kit';
 </script>
 
 <a href="https://hackclub.com"><img id="flag" src="/flag.svg" alt="Hackclub Flag Logo" /></a>
