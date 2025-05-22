@@ -5,7 +5,7 @@
 	let { children } = $props();
 
 	if (!page.data.session) {
-		redirect(302, '/');
+		redirect(303, '/');
 	}
 
 	import Navbar from '$lib/components/Navbar.svelte';
