@@ -8,7 +8,7 @@ export const GET: RequestHandler = async ({ locals }) => {
 	if (!session) {
 		throw error(401);
 	}
-	const selection = await db.select({ id: users.id, name: users.name, description: users.description, image: users.image, tags: users.tags }).from(users).orderBy(sql`RANDOM()`).limit(1);
+	const selection = await db.select({ id: users.id, name: users.name, description: users.description, image: users.image, tags: users.tags, colors: users.colors }).from(users).orderBy(sql`RANDOM()`).limit(1);
 	const user = selection[0];
 	return new Response(JSON.stringify(user));
 }

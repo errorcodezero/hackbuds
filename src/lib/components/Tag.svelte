@@ -1,8 +1,7 @@
 <script lang="ts">
-	const {
-		children,
-		color
-	}: { children: any; color: 'blue' | 'red' | 'green' | 'orange' | 'yellow' | 'white' } = $props();
+	import type { Color } from '$lib/colors';
+
+	const { children, color }: { children: any; color: Color } = $props();
 </script>
 
 {#if color == 'blue'}

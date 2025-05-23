@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import IconButton from '$lib/components/IconButton.svelte';
 	import Card from '$lib/components/Card.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import Icon from '@iconify/svelte';
+	import type { Color } from '$lib/colors';
 	import { onMount } from 'svelte';
 
 	const populate = async () => {
+		loaded = false;
 		const data = await fetch('/api/getMatch', {
 			method: 'GET'
 		}).then((data) => data.json());
@@ -14,44 +15,57 @@
 		tags = data.tags;
 		description = data.description;
 		image = data.image;
+		colors = data.colors;
 		name = data.name;
+		loaded = true;
 	};
 
 	const like = async () => {
-		populate();
+		setTimeout(async () => {
+			await populate();
+		}, 500);
 	};
 	const dislike = async () => {
-		populate();
+		setTimeout(async () => {
+			await populate();
+		}, 500);
 	};
 	let tags: String[] = $state([]);
+	let colors: Color[] = $state([]);
 	let description = $state('');
 	let image = $state('');
 	let name = $state('');
 	let link = $state('');
+	let loaded = $state(false);
 
 	onMount(() => populate());
 </script>
 
 <div id="container">
-	<Card>
-		<div class="card">
-			<h1>
-				{name}
-				<a id="custom_link" href={link}><Icon icon="mdi:link" width={20} height={20} /></a>
-			</h1>
-			<img src={image} alt={`Profile picture of ${name}`} width={350} />
-			<p>{description}</p>
-			<div class="buttons">
-				<IconButton tooltip="Like" href="" type="heart" onclick={() => like()} />
-				<IconButton tooltip="Dislike" href="" type="cross" onclick={() => dislike()} />
+	{#if loaded}
+		<Card>
+			<div class="card">
+				<h1>
+					{name}
+					<a id="custom_link" href={link}><Icon icon="mdi:link" width={20} height={20} /></a>
+				</h1>
+				<img src={image} alt={`Profile picture of ${name}`} width={350} />
+				<p>{description}</p>
+				<div class="buttons">
+					<IconButton tooltip="Like" href="" type="heart" onclick={() => like()} />
+					<IconButton tooltip="Dislike" href="" type="cross" onclick={() => dislike()} />
+				</div>
+				<div class="tags">
+					{#each tags as tag, index}
+						<Tag color={colors[index]}>{tag}</Tag>
+					{/each}
+				</div>
 			</div>
-			<div class="tags">
-				{#each tags as tag}
-					<Tag color="blue">{tag}</Tag>
-				{/each}
-			</div>
-		</div>
-	</Card>
+		</Card>
+	{:else}
+		<!-- TODO: Replace with an actual loading wheel sometime -->
+		<p>Loading...</p>
+	{/if}
 </div>
 
 <svelte:head>

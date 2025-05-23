@@ -1,5 +1,4 @@
 <script>
-	import { goto, invalidate, invalidateAll } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
 	import { signOut } from '@auth/sveltekit/client';
 </script>
