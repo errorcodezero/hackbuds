@@ -13,7 +13,6 @@
 <input {placeholder} {type} bind:value />
 
 <style>
-	/* your styles go here */
 	input {
 		border: 0.2em, solid, var(--ctp-surface1);
 		border-radius: 2em;

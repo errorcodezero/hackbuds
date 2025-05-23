@@ -4,33 +4,51 @@
 	import Card from '$lib/components/Card.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import Icon from '@iconify/svelte';
+	import { onMount } from 'svelte';
+
+	const populate = async () => {
+		const data = await fetch('/api/getMatch', {
+			method: 'GET'
+		}).then((data) => data.json());
+		console.log(data);
+		tags = data.tags;
+		description = data.description;
+		image = data.image;
+		name = data.name;
+	};
+
+	const like = async () => {
+		populate();
+	};
+	const dislike = async () => {
+		populate();
+	};
+	let tags: String[] = $state([]);
+	let description = $state('');
+	let image = $state('');
+	let name = $state('');
+	let link = $state('');
+
+	onMount(() => populate());
 </script>
 
 <div id="container">
 	<Card>
 		<div class="card">
 			<h1>
-				{page.data.session?.user?.name}
-				<a id="github_link" href="https://github.com/errorcodezero"
-					><Icon icon="mdi:github" width={20} height={20} /></a
-				>
+				{name}
+				<a id="custom_link" href={link}><Icon icon="mdi:link" width={20} height={20} /></a>
 			</h1>
-			<img
-				src={page.data.session?.user?.image}
-				alt={`Profile picture of ${page.data.session?.user?.name}`}
-				width={350}
-			/>
-			<p>C++ and rust fanatic. HATES javascript with a passion.</p>
+			<img src={image} alt={`Profile picture of ${name}`} width={350} />
+			<p>{description}</p>
 			<div class="buttons">
-				<IconButton tooltip="Like" href="" type="heart" onclick={null} />
-				<IconButton tooltip="Dislike" href="" type="cross" onclick={null} />
+				<IconButton tooltip="Like" href="" type="heart" onclick={() => like()} />
+				<IconButton tooltip="Dislike" href="" type="cross" onclick={() => dislike()} />
 			</div>
 			<div class="tags">
-				<Tag color="blue">C++</Tag>
-				<Tag color="orange">Rust</Tag>
-				<Tag color="yellow">Svelte</Tag>
-				<Tag color="red">Astro</Tag>
-				<Tag color="white">Test</Tag>
+				{#each tags as tag}
+					<Tag color="blue">{tag}</Tag>
+				{/each}
 			</div>
 		</div>
 	</Card>
@@ -41,7 +59,7 @@
 </svelte:head>
 
 <style>
-	#github_link {
+	#custom_link {
 		padding-top: 1em;
 		color: var(--ctp-blue);
 		text-decoration: none;
