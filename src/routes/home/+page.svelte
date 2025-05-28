@@ -17,6 +17,7 @@
 		image = data.image;
 		colors = data.colors;
 		name = data.name;
+		slackId = data.slackId;
 		loaded = true;
 	};
 
@@ -36,6 +37,7 @@
 	let image = $state('');
 	let name = $state('');
 	let link = $state('');
+	let slackId: { id: string }[] | null = $state(null);
 	let loaded = $state(false);
 
 	onMount(() => populate());
@@ -52,8 +54,18 @@
 				<img src={image} alt={`Profile picture of ${name}`} width={350} />
 				<p>{description}</p>
 				<div class="buttons">
-					<IconButton tooltip="Like" href="" type="heart" onclick={() => like()} />
-					<IconButton tooltip="Dislike" href="" type="cross" onclick={() => dislike()} />
+					<IconButton tooltip="Like" type="heart" onclick={() => like()} />
+					<IconButton tooltip="Dislike" type="cross" onclick={() => dislike()} />
+					{#if !!slackId}
+						<a
+							href={`https://hackclub.slack.com/team/${slackId[0].id.length < slackId[1].id.length ? slackId[0].id : slackId[1].id}`}
+							target="_blank"
+						>
+							<IconButton tooltip="Chat" type="chat" onclick={null} />
+						</a>
+					{:else}
+						<IconButton tooltip="Chat" type="chat" onclick={null} />
+					{/if}
 				</div>
 				<div class="tags">
 					{#each tags as tag, index}
@@ -62,7 +74,7 @@
 				</div>
 			</div>
 		</Card>
-	{:else}
+	{:else}d
 		<!-- TODO: Replace with an actual loading wheel sometime -->
 		<p>Loading...</p>
 	{/if}

@@ -7,9 +7,8 @@
 		onclick = undefined,
 		tooltip
 	}: {
-		type: 'heart' | 'cross';
+		type: 'heart' | 'cross' | 'chat';
 		onclick: MouseEventHandler<HTMLButtonElement> | undefined | null;
-		href: string | null;
 		tooltip: string | null | undefined;
 	} = $props();
 
@@ -45,6 +44,17 @@
 		{:else}
 			<Icon width={40} height={40} icon="mdi:radio-button-checked" />
 		{/if}
+	</button>
+{:else if type === 'chat'}
+	<button
+		title={tooltip}
+		class="chat"
+		onclick={(event) => {
+			clicked = !clicked;
+			if (onclick) onclick(event);
+		}}
+	>
+		<Icon width={40} height={40} icon="mdi:chat" />
 	</button>
 {/if}
 
@@ -82,5 +92,15 @@
 	button.cross:hover {
 		color: var(--ctp-base);
 		background-color: var(--ctp-maroon);
+	}
+
+	button.chat {
+		color: var(--ctp-surface0);
+		background-color: var(--ctp-green);
+	}
+
+	button.chat:hover {
+		color: var(--ctp-base);
+		background-color: var(--ctp-yellow);
 	}
 </style>
