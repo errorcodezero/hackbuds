@@ -74,7 +74,7 @@
 				</div>
 			</div>
 		</Card>
-	{:else}d
+	{:else}
 		<!-- TODO: Replace with an actual loading wheel sometime -->
 		<p>Loading...</p>
 	{/if}
