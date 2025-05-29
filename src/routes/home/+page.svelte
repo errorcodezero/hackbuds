@@ -58,7 +58,7 @@
 					<IconButton tooltip="Dislike" type="cross" onclick={() => dislike()} />
 					{#if !!slackId}
 						<a
-							href={`https://hackclub.slack.com/team/${slackId[0].id.length < slackId[1].id.length ? slackId[0].id : slackId[1].id}`}
+							href={`https://hackclub.slack.com/team/${slackId.length > 1 ? (slackId[0].id.length < slackId[1].id.length ? slackId[0].id : slackId[1].id) : slackId[0].id}`}
 							target="_blank"
 						>
 							<IconButton tooltip="Chat" type="chat" onclick={null} />
