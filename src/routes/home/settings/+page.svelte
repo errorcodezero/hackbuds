@@ -41,19 +41,7 @@
 				})}
 			type="primary">Change link</Button
 		>
-		<Button
-			type="primary"
-			onclick={() => {
-				dialog?.showModal();
-			}}>Add Tag</Button
-		>
 	</div>
-	<Dialog bind:dialog>
-		<form onsubmit={(event) => event.preventDefault()}>
-			<TextInput value="" type="text" placeholder="Tag Name" />
-			<TextInput value="" type="text" placeholder="Color" />
-		</form>
-	</Dialog>
 </div>
 
 <style>

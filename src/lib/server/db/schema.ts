@@ -13,7 +13,7 @@ export const users = pgTable('user', {
 	email: text('email').unique(),
 	emailVerified: timestamp('emailVerified', { mode: 'date' }),
 	colors: text('colors').array().$type<Color>(),
-	image: text('image')
+	image: text('image'),
 });
 
 export const accounts = pgTable(
@@ -88,3 +88,26 @@ export const authenticators = pgTable(
 		}
 	]
 );
+
+export const matches = pgTable(
+	'match',
+	{
+		id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+		initiatedId: text('initiated_by')
+			.references(() => users.id, { onDelete: 'cascade' }),
+		matchedId: text('victim')
+			.references(() => users.id, { onDelete: 'cascade' }),
+	},
+	(match) => [
+		{
+			compositePK: primaryKey({
+				columns: [match.initiatedId, users.id]
+			})
+		},
+		{
+			compositePK: primaryKey({
+				columns: [match.matchedId, users.id]
+			})
+		}
+	]
+)

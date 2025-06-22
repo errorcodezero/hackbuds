@@ -1,9 +1,7 @@
 <script lang="ts">
 	import IconButton from '$lib/components/IconButton.svelte';
 	import Card from '$lib/components/Card.svelte';
-	import Tag from '$lib/components/Tag.svelte';
 	import Icon from '@iconify/svelte';
-	import type { Color } from '$lib/colors';
 	import { onMount } from 'svelte';
 
 	const populate = async () => {
@@ -98,10 +96,5 @@
 	.buttons {
 		display: flex;
 		gap: 1em;
-	}
-
-	.tags {
-		display: flex;
-		gap: 0.5em;
 	}
 </style>

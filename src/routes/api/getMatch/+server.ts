@@ -1,11 +1,11 @@
 import { db } from '$lib/server/db';
 import { accounts, users } from '$lib/server/db/schema';
 import { error, type RequestHandler } from '@sveltejs/kit';
-import { sql, eq } from 'drizzle-orm';
+import { sql, eq, not } from 'drizzle-orm';
 
 export const GET: RequestHandler = async ({ locals }) => {
 	const session = await locals.auth();
-	if (!session) {
+	if (!session || !session.user || !session.user.id) {
 		throw error(401);
 	}
 	const selection = await db
@@ -14,11 +14,11 @@ export const GET: RequestHandler = async ({ locals }) => {
 			name: users.name,
 			description: users.description,
 			image: users.image,
-			tags: users.tags,
 			colors: users.colors,
 			link: users.link
 		})
 		.from(users)
+		.where(not(eq(users.id, session.user.id)))
 		.orderBy(sql`RANDOM()`)
 		.limit(1);
 	const slackId = await db
