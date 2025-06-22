@@ -12,10 +12,9 @@
 			method: 'GET'
 		}).then((data) => data.json());
 		console.log(data);
-		tags = data.tags;
 		description = data.description;
+		link = data.link;
 		image = data.image;
-		colors = data.colors;
 		name = data.name;
 		slackId = data.slackId;
 		loaded = true;
@@ -31,8 +30,6 @@
 			await populate();
 		}, 500);
 	};
-	let tags: String[] = $state([]);
-	let colors: Color[] = $state([]);
 	let description = $state('');
 	let image = $state('');
 	let name = $state('');
@@ -66,11 +63,6 @@
 					{:else}
 						<IconButton tooltip="Chat" type="chat" onclick={null} />
 					{/if}
-				</div>
-				<div class="tags">
-					{#each tags as tag, index}
-						<Tag color={colors[index]}>{tag}</Tag>
-					{/each}
 				</div>
 			</div>
 		</Card>

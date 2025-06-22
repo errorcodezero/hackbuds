@@ -8,12 +8,11 @@ export const users = pgTable('user', {
 		.$defaultFn(() => crypto.randomUUID()),
 	name: text('name'),
 	rating: integer('integer').default(600),
-	// WARNING:I should turn this into an actual table for tags but idk
-	tags: text('tags').array().default([]),
-	colors: text('colors').array().default([]).$type<Color>(),
+	link: text('link').default(''),
 	description: text('description').default(''),
 	email: text('email').unique(),
 	emailVerified: timestamp('emailVerified', { mode: 'date' }),
+	colors: text('colors').array().$type<Color>(),
 	image: text('image')
 });
 

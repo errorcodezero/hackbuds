@@ -5,9 +5,9 @@ import { eq } from 'drizzle-orm';
 
 export const DELETE: RequestHandler = async ({ locals }) => {
 	const session = await locals.auth();
-	if (!session || !session.user || !session.user.email) {
+	if (!session || !session.user || !session.user.id) {
 		return error(401);
 	}
-	await db.delete(users).where(eq(users.email, session.user.email));
+	await db.delete(users).where(eq(users.id, session.user.id));
 	return new Response('OK');
 };

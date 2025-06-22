@@ -15,7 +15,8 @@ export const GET: RequestHandler = async ({ locals }) => {
 			description: users.description,
 			image: users.image,
 			tags: users.tags,
-			colors: users.colors
+			colors: users.colors,
+			link: users.link
 		})
 		.from(users)
 		.orderBy(sql`RANDOM()`)
@@ -23,7 +24,7 @@ export const GET: RequestHandler = async ({ locals }) => {
 	const slackId = await db
 		.select({ id: accounts.providerAccountId })
 		.from(accounts)
-		.where(eq(accounts.userId, selection[0].id))
+		.where(eq(accounts.userId, selection[0].id));
 
 	const user = selection[0];
 	return new Response(JSON.stringify({ ...user, slackId }));

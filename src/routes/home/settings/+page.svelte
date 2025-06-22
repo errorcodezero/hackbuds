@@ -1,9 +1,12 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/Button.svelte';
+	import Dialog from '$lib/components/Dialog.svelte';
 	import TextInput from '$lib/components/TextInput.svelte';
 	import { signOut } from '@auth/sveltekit/client';
 
 	let description = $state('');
+	let link = $state('');
+	let dialog: HTMLDialogElement | undefined = $state();
 </script>
 
 <div class="container">
@@ -16,32 +19,41 @@
 				signOut();
 			}}>Delete account</Button
 		>
-		<!-- TODO: make an actual settings edit page -->
-		<form
-			onsubmit={(event) => {
-				event.preventDefault();
-			}}
+		<TextInput placeholder="Description" type="text" bind:value={description} />
+		<Button
+			onclick={async () =>
+				await fetch('/api/updateUser', {
+					method: 'POST',
+					body: JSON.stringify({
+						description: description
+					})
+				})}
+			type="primary">Change description</Button
 		>
-			<TextInput placeholder="Description" type="text" value={description} />
-			<Button onclick={null} type="primary">Change description</Button>
-		</form>
-		<form
-			onsubmit={(event) => {
-				event.preventDefault();
-			}}
+		<TextInput placeholder="Link" type="text" bind:value={link} />
+		<Button
+			onclick={async () =>
+				await fetch('/api/updateUser', {
+					method: 'POST',
+					body: JSON.stringify({
+						link: link
+					})
+				})}
+			type="primary">Change link</Button
 		>
-			<TextInput placeholder="Tags(space between each)" type="text" value={description} />
-			<Button onclick={null} type="primary">Change tags</Button>
-		</form>
-		<form
-			onsubmit={(event) => {
-				event.preventDefault();
-			}}
+		<Button
+			type="primary"
+			onclick={() => {
+				dialog?.showModal();
+			}}>Add Tag</Button
 		>
-			<TextInput placeholder="Colors(space between each)" type="text" value={description} />
-			<Button onclick={null} type="primary">Change colors</Button>
-		</form>
 	</div>
+	<Dialog bind:dialog>
+		<form onsubmit={(event) => event.preventDefault()}>
+			<TextInput value="" type="text" placeholder="Tag Name" />
+			<TextInput value="" type="text" placeholder="Color" />
+		</form>
+	</Dialog>
 </div>
 
 <style>
